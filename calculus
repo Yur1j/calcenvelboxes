@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="UTF-8" />
+    <title>Calculacia kartonow</title>
+    <style>
+        body { display: flex; height: 100vh; }
+        #calculator { 
+            margin: auto; 
+            padding: 10px;
+            background: silver;
+            box-shadow: 0 0 10px black;
+            border-radius: 10px;
+        }
+        #display, button {
+            width: auto;
+            height: 30px;
+            padding: auto;
+            margin: 2px;
+            border: 1px solid gray;
+            border-radius: 4px;
+            box-shadow: 2px 2px gray;
+            font:  1em Impact;
+            outline: none;
+        }
+        #display {
+            width: 460px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div>
+licznik 
+<div>
+  <input type="text" id="num1" oninput="validateInput(this)">
+  <div>ilość zapakowanych kartonów<div>
+   <input type="text" id="num2" oninput="validateInput(this)">
+      <div class="row">
+<button id="plus" class="operator" onclick="func200(bb='A1')">A1</button>
+<button id="plus" class="operator" onclick="func200(bb='B2')">B2</button>
+<button id="plus" class="operator" onclick="func200(bb='Di')">DinLang</button>
+        </div>
+      <div class="row">
+<button id="plus" class="operator" onclick="func200(bb='C3')">C3</button>
+<button id="plus" class="operator" onclick="func200(bb='D4')">D4</button>
+<button id="plus" class="operator" onclick="func200(bb='E5')">E5</button>
+        </div>        
+              <div class="row">
+<button id="plus" class="operator" onclick="func200(bb='F6')">F6</button>
+<button id="plus" class="operator" onclick="func200(bb='G7')">G7</button>
+<button id="plus" class="operator" onclick="func200(bb='H8')">H8</button>
+        </div> 
+        <div class="row">
+<button id="plus" class="operator" onclick="func200(bb='i9')">i9</button>
+<button id="plus" class="operator" onclick="func200(bb='K10')">K10</button>
+        </div> 
+		<div class="row">
+<button id="plus" class="operator" onclick="func200(bb='InM')">In/Em M</button>
+<button id="plus" class="operator" onclick="func200(bb='InD')">In/Em D</button>
+        </div> 
+
+            <p id="result"></p>
+            <script>
+            var bb;
+                     
+            
+              function func200() {
+                var result;
+                var dilla=100;
+                var num1 = Number(document.getElementById("num1").value);
+                var num2 = Number(document.getElementById("num2").value); 
+                {
+                    if (bb == 'A1' || bb == 'B2')
+                    dilla=200;
+                    else if (bb == 'i9' || bb == 'K10') 
+                    dilla=100;
+                  result = bb + ' Format: ' + Math.trunc(num1 * 2 / dilla) + ' kartonow po liczniku <div> '+funcX();
+//                  return result;
+                }
+
+                function funcX() {
+                  var dodat;
+                  if ((num2 == null) || (num2 == 0))
+                   dodat = "_";
+                   else if (num2 > Math.round(num1 * 2 / dilla))
+                    dodat = "pomyłka, sprawdź swoje obliczenia";
+                    else if (num2 == Math.round(num1 * 2 / dilla))
+                    dodat = "witam 0 w śmietnik :)";
+                   else dodat = Math.ceil((num1 * 2 / dilla)-num2) + " kartonow w śmietnik";
+                    return dodat;
+                  }
+                  document.getElementById("result").innerHTML = result;
+                }
+
+                function validateInput(input) {
+      input.value = input.value.replace(/\D/g, ''); // Удаляем все символы, кроме цифр
+    }
+            </script>
+            </div>
